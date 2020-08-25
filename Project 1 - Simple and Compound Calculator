@@ -1,0 +1,54 @@
+echo "# Simple-and-Compound-Interest-Calculator" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/janderson037/Simple-and-Compound-Interest-Calculator.git
+git push -u origin master
+
+#this program computes a user's simple and compound interet on a principle amount
+#the program will also tell the user the amount of interest they have gained each year their principle amount sits in the bank 
+
+interest1 = 's'
+interest2 = 'c'
+principle = float(input("Please enter a principle amount: "))
+interest = str(input("Do you have a s for a simple interest rate on your principle or a c for a compound interest on your principle: "))
+
+while interest != interest1 or interest != interest2:
+    if interest == interest1 or interest == interest2:
+        break
+    interest = str(input("Stop with your invalid responses peasant. Simple or compound interest? "))
+
+rate = float(input("Please enter an interest percentage rate: "))
+years = int(input("Please enter the number of years from this investment: "))
+
+def simplerate():
+    num = 1
+    while num <= years:
+        percentage = rate * 0.01
+        srate = percentage * principle * num
+        print("Year", num, ": total interest is:  $", round(srate, 2))
+        num += 1
+
+def compoundrate():
+    num = 1
+    while num <= years:
+        percent = rate * 0.01
+        crate = principle * (1 + percent)**num
+        print("Year", num, ":total interest is: $", round(crate,2))
+        num += 1
+
+if interest == interest1:
+    simplerate()
+else:
+    compoundrate()
+
+rate2 = rate * 0.01
+simprate = round(principle * (1 + rate2 * years), 2)
+comprate = round(principle * (1 + rate2)**years, 2)
+
+if interest == interest1:
+    print("After", years, "years, your principle of $ ", principle, "at a simple interest rate of", rate, "% will total $", simprate)
+else:
+    print("After", years, "years, your principle of $ ", principle, "at a compound interest rate of", rate, "% will total $", comprate)
+
+print("Yay! You're amazing!")
